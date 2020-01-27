@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -std=c++11 -Wall -Wpedantic  -shared -Wl,-soname,libmessage_lib.so -o ../../../lib/libmessage_lib.so CMakeFiles/message_lib.dir/message_class.cpp.o 

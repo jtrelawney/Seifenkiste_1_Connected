@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -std=c++11 -Wall -pedantic -Wextra -Werror  -shared -Wl,-soname,libcamera_lib.so -o ../../lib/libcamera_lib.so CMakeFiles/camera_lib.dir/sensor_base_class.cpp.o CMakeFiles/camera_lib.dir/sensor_camera_class.cpp.o 
