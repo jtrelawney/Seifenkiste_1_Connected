@@ -60,6 +60,8 @@ public:
 
     //! reads out the message type
     message_type_enum get_message_type();
+    //! reads out the receiver address
+    address_class get_receiver_address();
 
     //! prints the message class member data
     virtual void print_meta_data();

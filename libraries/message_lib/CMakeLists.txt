@@ -23,7 +23,7 @@ target_link_libraries (ut_buffer_lib.exe header_buffer_lib)
 project(message_lib)
 add_library(message_lib SHARED message_class.cpp)
 add_executable(ut_message_lib.exe ut_message_lib.cpp)
-target_link_libraries (ut_message_lib.exe message_lib header_buffer_lib)
+target_link_libraries (ut_message_lib.exe message_lib header_buffer_lib address_lib)
 
 #[[
 project(server_tcp_test)

@@ -15,7 +15,7 @@ tcp class which requires a char * buffer to the data and its length to send the 
 class header_buffer_class{
 private:
     //! the header length is fixed and not negotiable
-    static const int TCP_HEADER_LENGTH = 26;
+    static const int TCP_HEADER_LENGTH = 38;
 
 protected:
     //! the buffer is implemented as a fixed length string

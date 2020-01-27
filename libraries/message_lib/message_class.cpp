@@ -29,6 +29,7 @@ buffer_info message_class::get_header_buffer_info(){
 
 void message_class::print_meta_data(){
     std::cout << "\n\nHeader data:" << std::endl;
+    std::cout << "m_receiver_address = " << m_receiver_address << std::endl;
     std::cout << "m_message_type = " << m_message_type << std::endl;
     std::cout << "m_id = " << m_id << std::endl;
     std::cout << "m_sensor_time_stamp = " << m_sensor_time_stamp << std::endl;
@@ -44,10 +45,23 @@ message_type_enum message_class::get_message_type(){
     return m_message_type;
 }
 
+address_class message_class::get_receiver_address(){
+    return m_receiver_address;
+}
+
 // transfers information from message class members into the header buffer
 unsigned int message_class::populate_header_buffer(){
     unsigned int N = 0;
     N+=set_buffer_data(m_message_type, N);
+    std::cout <<"N = " << N << std::endl;
+    address_class::Platform_def platform = m_receiver_address.get_platform();
+    N+=set_buffer_data(platform, N);
+    std::cout <<"N = " << N << std::endl;
+    address_class::Sensor_def sensor = m_receiver_address.get_sensor();
+    N+=set_buffer_data(sensor, N);
+    std::cout <<"N = " << N << std::endl;
+    address_class::Process_def process = m_receiver_address.get_process();
+    N+=set_buffer_data(process, N);
     std::cout <<"N = " << N << std::endl;
     N+=set_buffer_data(m_id, N);
     std::cout <<"N = " << N << std::endl;
@@ -78,6 +92,18 @@ unsigned int message_class::populate_member_data(){
     unsigned int N = 0;
     N+=get_buffer_data(m_message_type, N);
     std::cout <<"N = " << N << std::endl;
+
+    address_class::Platform_def platform;
+    N+=get_buffer_data(platform, N);
+    std::cout <<"N = " << N << std::endl;
+    address_class::Sensor_def sensor;
+    N+=get_buffer_data(sensor, N);
+    std::cout <<"N = " << N << std::endl;
+    address_class::Process_def process;
+    N+=get_buffer_data(process, N);
+    std::cout <<"N = " << N << std::endl;
+    m_receiver_address = address_class(platform, sensor, process);
+
     N+=get_buffer_data(m_id, N);
     std::cout <<"N = " << N << std::endl;
     N+=get_buffer_data(m_sensor_time_stamp, N);

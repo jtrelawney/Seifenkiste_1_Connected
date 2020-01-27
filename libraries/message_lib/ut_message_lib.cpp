@@ -1,4 +1,5 @@
 #include <iostream>
+#include <address_class.hpp>
 #include <message_class.hpp>
 #include <time_class.hpp>
 
@@ -16,8 +17,8 @@ private:
     def_time_format my_time_stamp;
     std::string my_precious_data;
 public:
-    test_message_class(std::string text ,message_type_enum mtype, unsigned int id, def_time_format stamp=0):
-        message_class(mtype,id),
+    test_message_class(std::string text , address_class address, message_type_enum mtype, unsigned int id, def_time_format stamp=0):
+        message_class(address, mtype,id),
         my_data_length(text.length()),
         my_time_stamp(stamp),
         my_precious_data(text)
@@ -116,10 +117,12 @@ void receive_data_buffer(message_class &source_message, message_class &target_me
 
 int main(){
 
+    // define address for test
+    address_class receiver_address(address_class::Platform_def::pc,address_class::Sensor_def::camera1,address_class::Process_def::cockpit);
     // decide on a type for the message test
     message_type_enum mtype = message_type_enum::T_camera_message;
     std::cout << "\n\ncreating test message" << std::endl;
-    test_message_class test_message("test message",mtype,3,get_time_stamp_ns());
+    test_message_class test_message("test message",receiver_address,mtype,3,get_time_stamp_ns());
     test_message.print_meta_data();
 
     // populate the header buffer
@@ -153,6 +156,10 @@ int main(){
                 receive_data_buffer(test_message,received_message);
                 std::cout << "final message received" << std::endl;
                 received_message.print_meta_data();
+                address_class address_to = test_message.get_receiver_address();
+                bool correct_address = (receiver_address == address_to);
+                if (correct_address) std::cout << "\n\nit has the correct address\n\n" << std::endl;
+                else std::cout << "\n\nthe address is incorrect\n\n" << std::endl;
             }
             break;
         case message_type_enum::T_time_sync_message :
