@@ -1,6 +1,5 @@
 #include "message_class.hpp"
 
-
 message_class::message_class(address_class address, message_type_enum mtype, unsigned int mid):
     m_receiver_address(address),
     m_message_type(mtype),
