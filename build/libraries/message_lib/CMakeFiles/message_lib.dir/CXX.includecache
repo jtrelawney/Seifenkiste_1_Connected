@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libraries/message_lib/header_buffer.hpp
+cstring
+-
+iostream
+-
+assert.h
+-
+
+../libraries/message_lib/message_type_enum_class.hpp
+iostream
+-
+
+../libraries/message_lib/time_class.hpp
+chrono
+-
+
+/home/jconnor/Seifenkiste/Seifenkiste_1_Connected/libraries/message_lib/message_class.cpp
+message_class.hpp
+/home/jconnor/Seifenkiste/Seifenkiste_1_Connected/libraries/message_lib/message_class.hpp
+
+/home/jconnor/Seifenkiste/Seifenkiste_1_Connected/libraries/message_lib/message_class.hpp
+iostream
+-
+header_buffer.hpp
+-
+message_type_enum_class.hpp
+-
+time_class.hpp
+-
+

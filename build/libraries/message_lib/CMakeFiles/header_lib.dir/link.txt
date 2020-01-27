@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++11 -Wall -Wpedantic  -shared -Wl,-soname,libheader_lib.so -o ../../../lib/libheader_lib.so CMakeFiles/header_lib.dir/header_buffer.cpp.o 

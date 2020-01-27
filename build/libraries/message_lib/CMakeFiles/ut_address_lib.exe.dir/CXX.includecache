@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libraries/message_lib/address_class.hpp
+iostream
+-
+
+/home/jconnor/Seifenkiste/Seifenkiste_1_Connected/libraries/message_lib/ut_address_lib.cpp
+address_class.hpp
+-
+iostream
+-
+
