@@ -1,7 +1,8 @@
 #include "message_class.hpp"
 
 
-message_class::message_class(message_type_enum mtype, unsigned int mid):
+message_class::message_class(address_class address, message_type_enum mtype, unsigned int mid):
+    m_receiver_address(address),
     m_message_type(mtype),
     m_id(mid),
     m_sensor_time_stamp(16)

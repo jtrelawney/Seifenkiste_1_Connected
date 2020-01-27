@@ -2,6 +2,7 @@
 #define MESSAGE_CLASS_H_
 
 #include <iostream>
+#include <address_class.hpp>
 #include <header_buffer.hpp>
 #include <message_type_enum_class.hpp>
 #include <time_class.hpp>
@@ -25,6 +26,9 @@ public:
 class message_class:protected header_buffer_class{
 
 private:
+
+    //! receiver address
+    address_class m_receiver_address;
     //! message type so that the proper object type can be reconstructed from buffer
     message_type_enum m_message_type;
     //! unique id for each message, best based on global counter
@@ -43,7 +47,7 @@ protected:
 
 public:
     //! construct with the private member settings
-    message_class(message_type_enum mtype, unsigned int mid);
+    message_class(address_class address,message_type_enum mtype, unsigned int mid);
     //! construct with a given buffer (eg. after tcp header receiver)
     message_class(header_buffer_class &buffer);
     //! default de-structor

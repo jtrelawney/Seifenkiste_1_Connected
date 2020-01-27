@@ -2,3 +2,4 @@ build/
 unit_tests/
 *.exe
 *.o
+*.so
