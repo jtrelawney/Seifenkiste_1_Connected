@@ -23,6 +23,7 @@ sensor_camera_class::sensor_camera_class(const address_class &address, const int
 }
 
 sensor_camera_class::~sensor_camera_class(){
+    std::cout << "camera_sensor_class : de - structor" << std::endl;
 }
 
 bool sensor_camera_class::init_sensor(){
@@ -32,7 +33,7 @@ bool sensor_camera_class::init_sensor(){
 
 
 bool sensor_camera_class::fetch_current_frame(cv::Mat &frame){
-    if (m_current_frame_valid == false) return -1;
+    if (m_current_frame_valid == false) return false;
     frame = m_current_frame;
     return true;
 }
@@ -45,7 +46,7 @@ bool sensor_camera_class::acquire_data(){
 
     // grab a frame from the camera and get a timeetamp immediately
     result = m_camera_ptr -> grab();
-    most_recent_acquisition_time_ = get_time_stamp_ns();
+    m_data_acquisition_timestamp = get_time_stamp_ns();
 
     if (result == false) {
         std::cout << "camera_sensor_class : acquire_data : issue grabing a frame" << std::endl;

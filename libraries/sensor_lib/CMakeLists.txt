@@ -15,6 +15,15 @@ project(sensor_lib)
 add_library(camera_lib SHARED sensor_base_class.cpp sensor_camera_class.cpp)
 add_executable(ut_sensor_camera.exe ut_sensor_camera.cpp)
 
-target_include_directories(camera_lib PUBLIC "../message_lib") #${message_lib})
-target_link_libraries(ut_sensor_camera.exe camera_lib message_lib address_lib time_lib)
-target_link_libraries (ut_sensor_camera.exe opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio)
+target_include_directories(camera_lib PUBLIC "../message_lib")
+
+set(OPENCV_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
+set(PROJECT_LIBS "camera_lib" "message_lib" "address_lib" "time_lib")
+#set(PROJECT_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
+#list(APPEND PROJECT_LIBS "camera_lib" "message_lib" "address_lib" "time_lib")
+#message(STATUS "PROJECT_LIBS = ${PROJECT_LIBS}")
+
+target_link_libraries(ut_sensor_camera.exe ${PROJECT_LIBS} ${OPENCV_LIBS})
+
+#target_link_libraries(ut_sensor_camera.exe camera_lib message_lib address_lib time_lib)
+#target_link_libraries(ut_sensor_camera.exe opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio)

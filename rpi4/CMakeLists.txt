@@ -17,11 +17,22 @@ message(STATUS "CMAKE_RUNTIME_OUTPUT_DIRECTORY = ${CMAKE_RUNTIME_OUTPUT_DIRECTOR
 
 project(rpi4)
 
+set(OPENCV_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
+set(PROJECT_LIBS "camera_lib" "message_lib" "address_lib" "time_lib")
+
 #rpi4_main
 
 include_directories(/usr/local/include/opencv4)
 add_executable(rpi4_main.exe rpi4_main.cpp)
-target_link_libraries (rpi4_main.exe opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio)
+
+target_include_directories(rpi4_main.exe PUBLIC "../libraries/message_lib")
+target_include_directories(rpi4_main.exe PUBLIC "../libraries/sensor_lib")
+target_link_libraries (rpi4_main.exe ${PROJECT_LIBS} ${OPENCV_LIBS})
+
+
+#target_link_libraries (rpi4_main.exe opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio)
+
+
 
 #[[
 set_target_properties( rpi4_main.exe
@@ -44,7 +55,7 @@ message(STATUS "cxx compile flags = ${CMAKE_CXX_FLAGS}")
 
 #message(STATUS "src = ${src}")
 
- 
+
 #add_subdirectory(pc_cockpit)
 
 

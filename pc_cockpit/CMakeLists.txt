@@ -4,6 +4,14 @@ cmake_minimum_required(VERSION 3.0)
 
 message(STATUS "\n\nBuilding PC project")
 
+set(OPENCV_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
+set(PROJECT_LIBS "camera_lib" "message_lib" "address_lib" "time_lib")
+
+#set(PROJECT_LIBS "opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio")
+#set(PROJECT_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
+#list(APPEND PROJECT_LIBS "address_lib" "message_lib" "camera_lib" "time_lib")
+#message(STATUS "PROJECT_LIBS = ${PROJECT_LIBS}")
+
 
 # set the required paths
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -23,7 +31,16 @@ project(pc_cockpit)
 
 include_directories(/usr/local/include/opencv4)
 add_executable(pc_main.exe pc_main.cpp)
-target_link_libraries (pc_main.exe opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio)
+
+target_include_directories(pc_main.exe PUBLIC "../libraries/message_lib")
+target_include_directories(pc_main.exe PUBLIC "../libraries/sensor_lib")
+#target_link_libraries (pc_main.exe opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio)
+
+#target_link_libraries (pc_main.exe ${PROJECT_LIBS})
+
+target_link_libraries (pc_main.exe ${PROJECT_LIBS} ${OPENCV_LIBS})
+#target_link_libraries(ut_sensor_camera.exe )
+
 
 #[[
 set_target_properties( pc_main.exe
@@ -46,7 +63,7 @@ message(STATUS "cxx compile flags = ${CMAKE_CXX_FLAGS}")
 
 #message(STATUS "src = ${src}")
 
- 
+
 #add_subdirectory(pc_cockpit)
 
 

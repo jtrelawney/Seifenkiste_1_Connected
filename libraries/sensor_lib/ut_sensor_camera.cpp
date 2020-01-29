@@ -5,12 +5,8 @@
 
 address_class define_camera_sensor_type(){
     address_class::Platform_def platform = address_class::Platform_def::rpi;;
-    address_class::Sensor_def sensor;
-    address_class::Process_def process;
-
-    //platform
-    sensor = address_class::Sensor_def::camera1;
-    process = address_class::Process_def::undefined;
+    address_class::Sensor_def sensor = address_class::Sensor_def::camera1;
+    address_class::Process_def process = address_class::Process_def::undefined;
     return address_class(platform,sensor,process);
 }
 
@@ -35,5 +31,7 @@ int main()
         if( cv::waitKey(30) >= 0) break;
     }
 
+    delete camera;
+    
     return 0;
 }

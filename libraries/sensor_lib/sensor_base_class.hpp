@@ -25,31 +25,28 @@ const int SENSOR_DEBUG_LEVEL = 1;
 class sensor_base_class{
 
 private:
-
-    address_class m_sensors_own_address;
     //! the address of the particular sensor, this should be a unique identifier so that messages can be routed
-    //int sensor_debug_level_;
-
-    //! default constructor not to be used
+    address_class m_sensors_own_address;
+    //! default constructor - not to be used
     sensor_base_class();
 
 protected:
+    //! statistics - for each sensor data acquistion increase this count
     unsigned int m_data_acquisition_count;
-    def_time_format most_recent_acquisition_time_;
+    //! keep the timestamp for the most recent data acquisition
+    def_time_format m_data_acquisition_timestamp;
 
 public:
 
     sensor_base_class(const address_class &address);
     virtual ~sensor_base_class();
 
+    virtual address_class get_address() final;
 
-    virtual bool init_sensor()=0;
     virtual bool acquire_data();
     virtual bool create_sensor_message();
     virtual bool queue_sensor_message();
 
-    //virtual sensor_state_type get_state();
-    virtual address_class get_address() final;
 };
 
 #endif
