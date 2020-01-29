@@ -10,6 +10,9 @@ SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
 message(STATUS "cxx flags = ${CMAKE_CXX_FLAGS}")
 
+project(time_lib)
+add_library(time_lib SHARED time_class.cpp)
+
 project(address_lib)
 add_library(address_lib SHARED address_class.cpp)
 add_executable(ut_address_lib.exe ut_address_lib.cpp)
@@ -23,7 +26,7 @@ target_link_libraries (ut_buffer_lib.exe header_buffer_lib)
 project(message_lib)
 add_library(message_lib SHARED message_class.cpp)
 add_executable(ut_message_lib.exe ut_message_lib.cpp)
-target_link_libraries (ut_message_lib.exe message_lib header_buffer_lib address_lib)
+target_link_libraries (ut_message_lib.exe message_lib header_buffer_lib address_lib time_lib)
 
 #[[
 project(server_tcp_test)
