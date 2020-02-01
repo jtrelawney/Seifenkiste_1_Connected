@@ -1,5 +1,28 @@
 #include "message_class.hpp"
 
+std::ostream& operator << (std::ostream& os, const message_type_enum& message_type)
+{
+    std::string result;
+    switch(message_type){
+        case(message_type_enum::T_camera_message):
+            result = "camera message type";
+            break;
+        case(message_type_enum::T_time_sync_message):
+            result = "time sync message type";
+            break;
+        case(message_type_enum::T_other_message):
+            result = "other message type";
+            break;
+        case(message_type_enum::T_undefined_message):
+            result = "undefined message type";
+            break;
+
+    }
+    os << result;
+    return os;
+}
+
+
 message_class::message_class(address_class address, message_type_enum mtype, unsigned int mid):
     m_receiver_address(address),
     m_message_type(mtype),

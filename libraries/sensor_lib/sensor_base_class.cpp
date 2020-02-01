@@ -19,32 +19,30 @@ sensor_base_class::sensor_base_class(const address_class &address):
 
 sensor_base_class::~sensor_base_class(){
     std::cout << "sensor_base_class : de - structor" << std::endl;
-   //sensor_state_ = sensor_state_type::sensor_not_initialized;
 }
 
-
-
 address_class sensor_base_class::get_address(){
-    //std::cout << "sensor_base_class : set_sensor_type " << sensor_type << "\n";
     return m_sensors_own_address;
 }
 
-/*
-int sensor_base_class::init_sensor(){
-    return -1;
-}
-*/
 bool sensor_base_class::acquire_data(){
    return false;
 }
 
-bool sensor_base_class::create_sensor_message(){
-    return false;
+message_class* sensor_base_class::create_sensor_message(const address_class &receiver_address){
+	/*message_class* message = new message_class(
+		receiver_address,
+		message_type_enum::T_undefined_message,
+		m_data_acquisition_count
+	);*/
+	message_class* message = nullptr;
+    return message;
 }
 
+/*
 bool sensor_base_class:: queue_sensor_message(){
     return false;
 }
-
+*/
 
 //sensor_state_type sensor_base_class::get_state(){ return sensor_state_; }

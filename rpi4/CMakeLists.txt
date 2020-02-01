@@ -18,7 +18,7 @@ message(STATUS "CMAKE_RUNTIME_OUTPUT_DIRECTORY = ${CMAKE_RUNTIME_OUTPUT_DIRECTOR
 project(rpi4)
 
 set(OPENCV_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
-set(PROJECT_LIBS "camera_lib" "message_lib" "address_lib" "time_lib")
+set(PROJECT_LIBS "camera_lib" "camera_message_lib" "message_lib" "header_buffer_lib" "address_lib" "time_lib")
 
 #rpi4_main
 

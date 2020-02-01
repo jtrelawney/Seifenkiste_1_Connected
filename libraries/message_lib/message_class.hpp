@@ -2,10 +2,19 @@
 #define MESSAGE_CLASS_H_
 
 #include <iostream>
+#include <time_class.hpp>
 #include <address_class.hpp>
 #include <header_buffer.hpp>
-#include <message_type_enum_class.hpp>
-#include <time_class.hpp>
+
+enum class message_type_enum : unsigned char
+{
+    T_camera_message    = 0x01,
+    T_time_sync_message = 0x02,
+    T_other_message    = 0xfe,
+    T_undefined_message = 0xff,
+};
+
+std::ostream& operator << (std::ostream& os, const message_type_enum& message_type);
 
 class buffer_info{
 public:

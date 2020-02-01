@@ -4,6 +4,8 @@
 #include <iostream>
 #include <time_class.hpp>
 #include <address_class.hpp>
+#include <message_class.hpp>
+
 
 /*
 base class - basic functions
@@ -16,7 +18,7 @@ base class - basic functions
 
 */
 
-const int SENSOR_DEBUG_LEVEL = 1;
+//const int SENSOR_DEBUG_LEVEL = 1;
 
 //enum sensor_state_type {sensor_not_initialized, sensor_init_failed, sensor_ready, invalid_sensor_state};
 //sensor_state_type sensor_state_;
@@ -44,8 +46,8 @@ public:
     virtual address_class get_address() final;
 
     virtual bool acquire_data();
-    virtual bool create_sensor_message();
-    virtual bool queue_sensor_message();
+    virtual message_class* create_sensor_message(const address_class &receiver_address)=0;
+    //virtual bool queue_sensor_message();
 
 };
 

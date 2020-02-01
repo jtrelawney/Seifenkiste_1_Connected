@@ -7,6 +7,7 @@
 #include "opencv2/opencv.hpp"
 
 #include <sensor_base_class.hpp>
+#include <camera_message_class.hpp>
 
 class sensor_camera_class : public sensor_base_class {
 
@@ -33,8 +34,8 @@ public:
     bool init_sensor();
     bool acquire_data();
     bool fetch_current_frame(cv::Mat &frame);
-    bool create_sensor_message();
-    bool queue_sensor_message();
+    camera_message_class* create_sensor_message(const address_class &receiver_address);
+    //bool queue_sensor_message();
 
     void set_sensor_type();
 };

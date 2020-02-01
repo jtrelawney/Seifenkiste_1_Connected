@@ -67,10 +67,18 @@ bool sensor_camera_class::acquire_data(){
     return true;
 }
 
-bool sensor_camera_class::create_sensor_message(){
+/*
+message_class sensor_camera_class::create_sensor_message(){
     return false;
 }
+*/
+camera_message_class* sensor_camera_class::create_sensor_message(const address_class &receiver_address){
+    camera_message_class* message = new camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp);
+    return message;
+}
 
+/*
 bool sensor_camera_class:: queue_sensor_message(){
     return false;
 }
+*/

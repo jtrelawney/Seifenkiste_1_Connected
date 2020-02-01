@@ -10,6 +10,11 @@ SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
 message(STATUS "cxx flags = ${CMAKE_CXX_FLAGS}")
 
+set(OPENCV_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
+set(PROJECT_LIBS "time_lib" "address_lib" "camera_message_lib" "message_lib" "header_buffer_lib")
+message(STATUS "OPENCV_LIBS = ${OPENCV_LIBS}")
+message(STATUS "PROJECT_LIBS = ${PROJECT_LIBS}")
+
 project(time_lib)
 add_library(time_lib SHARED time_class.cpp)
 
@@ -25,8 +30,16 @@ target_link_libraries (ut_buffer_lib.exe header_buffer_lib)
 
 project(message_lib)
 add_library(message_lib SHARED message_class.cpp)
+
+project(camera_message_lib)
+add_library(camera_message_lib SHARED camera_message_class.cpp)
+
+project(ut_test_message_lib)
 add_executable(ut_message_lib.exe ut_message_lib.cpp)
-target_link_libraries (ut_message_lib.exe message_lib header_buffer_lib address_lib time_lib)
+#target_link_libraries (ut_message_lib.exe message_lib header_buffer_lib address_lib time_lib)
+target_link_libraries (ut_message_lib.exe ${PROJECT_LIBS} ${OPENCV_LIBS})
+
+
 
 #[[
 project(server_tcp_test)

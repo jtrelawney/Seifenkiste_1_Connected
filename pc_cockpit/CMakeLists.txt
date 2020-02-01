@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.0)
 message(STATUS "\n\nBuilding PC project")
 
 set(OPENCV_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
-set(PROJECT_LIBS "camera_lib" "message_lib" "address_lib" "time_lib")
+set(PROJECT_LIBS "camera_lib" "camera_message_lib" "message_lib" "header_buffer_lib" "address_lib" "time_lib")
 
 #set(PROJECT_LIBS "opencv_core opencv_highgui opencv_imgproc opencv_video opencv_videoio")
 #set(PROJECT_LIBS "opencv_core" "opencv_highgui" "opencv_imgproc" "opencv_video" "opencv_videoio")
