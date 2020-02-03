@@ -29,16 +29,15 @@ bool sensor_base_class::acquire_data(){
    return false;
 }
 
+std::unique_ptr<message_class> sensor_base_class::create_sensor_message(const address_class &receiver_address){
+	return std::unique_ptr<message_class> (nullptr);
+}
+/*
 message_class* sensor_base_class::create_sensor_message(const address_class &receiver_address){
-	/*message_class* message = new message_class(
-		receiver_address,
-		message_type_enum::T_undefined_message,
-		m_data_acquisition_count
-	);*/
 	message_class* message = nullptr;
     return message;
 }
-
+*/
 /*
 bool sensor_base_class:: queue_sensor_message(){
     return false;

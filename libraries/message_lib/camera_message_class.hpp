@@ -15,10 +15,12 @@
 
 class camera_message_class:public message_class{
 private:
-    int my_data_length;
     def_time_format my_time_stamp;
     cv::Mat my_data;
+    bool my_data_valid;
 
+protected:
+    unsigned int get_data_size();
 public:
     camera_message_class(cv::Mat frame, address_class receiver_address, unsigned int id, def_time_format stamp);
     ~camera_message_class();
@@ -33,4 +35,6 @@ public:
 
     unsigned int populate_header_buffer_from_member_data();
     unsigned int populate_member_data_from_buffer();
+
+    cv::Mat extract_current_frame();
 };

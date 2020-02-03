@@ -18,7 +18,7 @@ private:
     std::string my_precious_data;
 public:
     test_message_class(std::string text , address_class address, message_type_enum mtype, unsigned int id, def_time_format stamp=0):
-        message_class(address, mtype,id),
+        message_class(address, mtype,id,stamp),
         my_data_length(text.length()),
         my_time_stamp(stamp),
         my_precious_data(text)

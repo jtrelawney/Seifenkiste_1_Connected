@@ -18,6 +18,12 @@ void header_buffer_class::set_buffer(header_buffer_class &buffer){
     m_buffer = buffer.m_buffer;
 }
 
+buffer_info header_buffer_class::get_header_buffer_info(){
+    buffer_info bi;
+    bi.set_info(get_buffer_length(),get_buffer_ptr());
+    return bi;
+}
+
 char *header_buffer_class::get_buffer_ptr(){
     return const_cast<char*>(&*m_buffer.begin());
 }

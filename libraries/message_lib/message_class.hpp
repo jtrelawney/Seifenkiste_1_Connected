@@ -16,22 +16,6 @@ enum class message_type_enum : unsigned char
 
 std::ostream& operator << (std::ostream& os, const message_type_enum& message_type);
 
-class buffer_info{
-public:
-    unsigned int buffer_length;
-    char *buffer_pointer;
-    bool valid;
-    buffer_info():buffer_length(0),buffer_pointer(nullptr),valid(false){};
-    ~buffer_info(){};
-    void set_info(unsigned int length, char *ptr){buffer_length=length;buffer_pointer=ptr;valid=true;}
-    void print(){
-        std::cout << "buffer info - content" <<std::endl;
-        std::cout << "valid = " << valid <<std::endl;
-        std::cout << "length = " << buffer_length <<std::endl;
-        std::cout << "char * = " << (void *) buffer_pointer <<std::endl;
-    }
-};
-
 class message_class:protected header_buffer_class{
 
 private:
@@ -56,7 +40,7 @@ protected:
 
 public:
     //! construct with the private member settings
-    message_class(address_class address,message_type_enum mtype, unsigned int mid);
+    message_class(address_class address,message_type_enum mtype, unsigned int mid,def_time_format time_stamp);
     //! construct with a given buffer (eg. after tcp header receiver)
     message_class(header_buffer_class &buffer);
     //! default de-structor

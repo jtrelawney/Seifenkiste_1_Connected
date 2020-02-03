@@ -2,6 +2,8 @@
 #define SENSOR_BASE_CLASS_H_
 
 #include <iostream>
+#include <memory>       //uiqueptr
+
 #include <time_class.hpp>
 #include <address_class.hpp>
 #include <message_class.hpp>
@@ -46,7 +48,8 @@ public:
     virtual address_class get_address() final;
 
     virtual bool acquire_data();
-    virtual message_class* create_sensor_message(const address_class &receiver_address)=0;
+    virtual std::unique_ptr<message_class> create_sensor_message(const address_class &receiver_address)=0;
+    //virtual message_class* create_sensor_message(const address_class &receiver_address)=0;
     //virtual bool queue_sensor_message();
 
 };

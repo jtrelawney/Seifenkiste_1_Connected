@@ -34,7 +34,14 @@ public:
     bool init_sensor();
     bool acquire_data();
     bool fetch_current_frame(cv::Mat &frame);
-    camera_message_class* create_sensor_message(const address_class &receiver_address);
+    //camera_message_class* create_sensor_message1(const address_class &receiver_address);
+
+    // implements the full virtual function from the base class
+    std::unique_ptr<message_class> create_sensor_message(const address_class &receiver_address);
+    std::unique_ptr<camera_message_class> get_sensor_message(const address_class &receiver_address);
+
+    //std::unique_ptr<camera_message_class> create_sensor_message1(const address_class &receiver_address);
+
     //bool queue_sensor_message();
 
     void set_sensor_type();

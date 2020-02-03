@@ -46,7 +46,7 @@ bool sensor_camera_class::acquire_data(){
 
     // grab a frame from the camera and get a timeetamp immediately
     result = m_camera_ptr -> grab();
-    m_data_acquisition_timestamp = get_time_stamp_ns();
+    m_data_acquisition_timestamp = get_time_stamp();
 
     if (result == false) {
         std::cout << "camera_sensor_class : acquire_data : issue grabing a frame" << std::endl;
@@ -67,14 +67,45 @@ bool sensor_camera_class::acquire_data(){
     return true;
 }
 
+
 /*
 message_class sensor_camera_class::create_sensor_message(){
     return false;
 }
 */
-camera_message_class* sensor_camera_class::create_sensor_message(const address_class &receiver_address){
-    camera_message_class* message = new camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp);
-    return message;
+
+std::unique_ptr<camera_message_class> sensor_camera_class::get_sensor_message(const address_class &receiver_address){
+
+/*
+    std::unique_ptr<camera_message_class> camera_message = new std::unique_ptr<camera_message_class> (
+        camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp)
+    );
+    */
+    //camera_message_class* test = new camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp);
+    //return test;
+    std::unique_ptr<camera_message_class> camera_message( new
+        camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp)
+        );
+    return camera_message;
+
+}
+
+
+std::unique_ptr<message_class> sensor_camera_class::create_sensor_message(const address_class &receiver_address){
+//std::unique_ptr<camera_message_class> sensor_camera_class::create_sensor_message(const address_class &receiver_address){
+//camera_message_class* sensor_camera_class::create_sensor_message(const address_class &receiver_address){
+    //camera_message_class* message = new camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp);
+    //return message;
+
+    /*
+    std::unique_ptr<camera_message_class> camera_message = new std::unique_ptr<camera_message_class> (
+        camera_message_class(m_current_frame, receiver_address, m_data_acquisition_count, m_data_acquisition_timestamp)
+    );
+    */
+
+    return std::unique_ptr<message_class> (nullptr);
+    //unique_ptr<DerivedClass> pDerived(static_cast<DerivedClass*>(pBase.release()));
+    //unique_ptr<DerivedClass> pDerived(static_cast<DerivedClass*>(pBase.release()));
 }
 
 /*
